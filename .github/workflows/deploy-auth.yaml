@@ -21,5 +21,5 @@ jobs:
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - run: doctl kubernetes cluster kubeconfig save ticketing
-      - run: kubectl rollout restart deployment auth-depl
+      - run: doctl kubernetes cluster kubeconfig save ticketing # connect to remote DO cluster , chnage the context so it points to it.
+      - run: kubectl rollout restart deployment auth-depl # any push on master to auth service wil be followed by a restart of the auth deployment .
