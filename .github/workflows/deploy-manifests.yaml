@@ -17,3 +17,6 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save ticketing
       - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
+# The only thing running in DO is your cluster code , no files will be transpoerted there , the trick here
+# is line 15-18, inside the Github container we connect to DO, and run kubectl apply from the Girhub container itself where we have
+# all the infra code but we change the context to remote DO cluster , it's just like running it local but because of the context changes will be applied there.
